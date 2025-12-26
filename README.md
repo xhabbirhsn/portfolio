@@ -55,63 +55,6 @@ yarn dev
 pnpm dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Customization
-
-### Update Personal Information
-
-1. **Home Section** (`components/sections/Home.tsx`):
-   - Update your name, title, and introduction
-   - Change social media links (GitHub, LinkedIn, email)
-
-2. **Experience Section** (`components/sections/Experience.tsx`):
-   - Add/edit your work experience
-   - Update job titles, companies, and achievements
-
-3. **About Section** (`components/sections/About.tsx`):
-   - Write your personal bio
-   - Update values and passions
-
-4. **Projects Section** (`components/sections/Projects.tsx`):
-   - Add your projects with descriptions
-   - Update tech stacks and links
-
-5. **Skills Section** (`components/sections/Skills.tsx`):
-   - Update skill levels and categories
-   - Add/remove technologies
-
-6. **Contact Section** (`components/sections/Contact.tsx`):
-   - Update contact information
-   - Configure form submission (connect to API/service)
-
-### Color Scheme
-
-Edit `tailwind.config.ts` to customize colors:
-
-```typescript
-colors: {
-  primary: {
-    // Your custom primary colors
-  },
-  accent: {
-    // Your custom accent colors
-  },
-}
-```
-
-### Metadata
-
-Update SEO information in `app/layout.tsx`:
-
-```typescript
-export const metadata: Metadata = {
-  title: "Your Name - Full Stack Developer",
-  description: "Your description",
-  keywords: ["your", "keywords"],
-};
-```
-
 ## Project Structure
 
 ```
@@ -141,37 +84,6 @@ portfolio/
 npm run build
 npm run start
 ```
-
-## Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Import project on [Vercel](https://vercel.com)
-3. Deploy automatically
-
-### Other Platforms
-
-The app can be deployed to any platform that supports Next.js:
-- Netlify
-- AWS Amplify
-- Digital Ocean
-- Railway
-
-## Performance Optimizations
-
-- Server-side rendering with Next.js 15
-- Optimized animations with Framer Motion
-- Lazy loading for sections
-- Minimal JavaScript bundle
-- Custom scrollbar styling
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
 
 ## License
 
