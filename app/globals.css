@@ -1,0 +1,554 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Technical Shadow Utilities */
+  .tech-shadow {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  
+  .tech-shadow-lg {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+  }
+  
+  .tech-glow {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Technical Border Utilities */
+  .tech-border {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .tech-border-accent {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Dither Pattern */
+  .dither-pattern {
+    background-image: 
+      repeating-linear-gradient(0deg, transparent 0px, transparent 1px, rgba(255, 255, 255, 0.05) 1px, rgba(255, 255, 255, 0.05) 2px),
+      repeating-linear-gradient(90deg, transparent 0px, transparent 1px, rgba(255, 255, 255, 0.05) 1px, rgba(255, 255, 255, 0.05) 2px);
+    background-size: 3px 3px;
+  }
+  
+  /* Animated Starfield Background - Multi-layer */
+  .starfield-bg {
+    position: relative;
+    background: #000;
+    overflow: hidden;
+  }
+  
+  .starfield-bg::before,
+  .starfield-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* Layer 1: Small fast-moving stars */
+  .starfield-bg::before {
+    background-image: 
+      radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.8), transparent),
+      radial-gradient(1px 1px at 45% 72%, rgba(255, 255, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 78% 34%, rgba(255, 255, 255, 0.9), transparent),
+      radial-gradient(1px 1px at 23% 89%, rgba(255, 255, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 67% 12%, rgba(255, 255, 255, 0.5), transparent),
+      radial-gradient(1px 1px at 91% 56%, rgba(255, 255, 255, 0.8), transparent),
+      radial-gradient(1px 1px at 34% 45%, rgba(255, 255, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 56% 91%, rgba(255, 255, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 89% 23%, rgba(255, 255, 255, 0.9), transparent),
+      radial-gradient(1px 1px at 15% 67%, rgba(255, 255, 255, 0.5), transparent);
+    background-size: 250% 250%;
+    background-position: 0% 0%;
+    animation: stars-move-1 80s linear infinite, stars-twinkle-1 4s ease-in-out infinite;
+    opacity: 0.3;
+  }
+  
+  /* Layer 2: Medium slower-moving stars */
+  .starfield-bg::after {
+    background-image: 
+      radial-gradient(1.5px 1.5px at 34% 27%, rgba(255, 255, 255, 0.7), transparent),
+      radial-gradient(1.5px 1.5px at 71% 83%, rgba(255, 255, 255, 0.5), transparent),
+      radial-gradient(1.5px 1.5px at 18% 54%, rgba(255, 255, 255, 0.8), transparent),
+      radial-gradient(1.5px 1.5px at 88% 41%, rgba(255, 255, 255, 0.6), transparent),
+      radial-gradient(1.5px 1.5px at 42% 76%, rgba(255, 255, 255, 0.9), transparent),
+      radial-gradient(1.5px 1.5px at 9% 15%, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1.5px 1.5px at 63% 8%, rgba(255, 255, 255, 0.7), transparent),
+      radial-gradient(1.5px 1.5px at 27% 92%, rgba(255, 255, 255, 0.5), transparent);
+    background-size: 300% 300%;
+    background-position: 50% 50%;
+    animation: stars-move-2 120s linear infinite, stars-twinkle-2 6s ease-in-out infinite;
+    opacity: 0.25;
+  }
+  
+  /* Static stars for sections */
+  .stars-bg {
+    background-image: 
+      radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 60% 70%, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.5), transparent),
+      radial-gradient(1px 1px at 90% 60%, rgba(255, 255, 255, 0.8), transparent),
+      radial-gradient(1px 1px at 33% 80%, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 15% 60%, rgba(255, 255, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 70% 40%, rgba(255, 255, 255, 0.5), transparent);
+    background-size: 200% 200%, 180% 180%, 250% 250%, 220% 220%, 190% 190%, 240% 240%, 210% 210%, 230% 230%;
+    background-position: 0% 0%, 40% 40%, 60% 60%, 20% 20%, 80% 80%, 30% 30%, 70% 70%, 50% 50%;
+    opacity: 0.3;
+  }
+  
+  /* Subtle Grid */
+  .tech-grid {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  /* Mobile: Reduce animation */
+  @media (max-width: 768px) {
+    .starfield-bg::before,
+    .starfield-bg::after {
+      animation: stars-twinkle-1 6s ease-in-out infinite;
+    }
+  }
+  
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .starfield-bg::before,
+    .starfield-bg::after {
+      animation: none;
+      opacity: 0.2;
+    }
+  }
+  
+  /* Futuristic Scanning Line */
+  .scan-line {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .scan-line::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: scan-vertical 8s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Horizontal scan line */
+  .scan-line-horizontal {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .scan-line-horizontal::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: scan-horizontal 6s ease-in-out infinite;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Pulse beacon effect */
+  .pulse-beacon {
+    position: relative;
+  }
+  
+  .pulse-beacon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse-ring 2s ease-out infinite;
+  }
+  
+  /* Glitch effect */
+  .glitch {
+    position: relative;
+  }
+  
+  .glitch:hover::before,
+  .glitch:hover::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch:hover::before {
+    animation: glitch-1 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    color: rgba(255, 0, 0, 0.7);
+    z-index: -1;
+  }
+  
+  .glitch:hover::after {
+    animation: glitch-2 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+    color: rgba(0, 255, 255, 0.7);
+    z-index: -2;
+  }
+  
+  /* Data stream effect */
+  .data-stream {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: data-fall 3s linear infinite;
+    opacity: 0.6;
+  }
+  
+  /* Grid pulse animation */
+  .grid-pulse {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-pulse-anim 4s ease-in-out infinite;
+  }
+  
+  /* Terminal cursor blink */
+  .terminal-cursor::after {
+    content: '▊';
+    animation: cursor-blink 1s step-end infinite;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Hologram effect */
+  .hologram {
+    position: relative;
+    animation: hologram-flicker 0.15s infinite;
+  }
+  
+  .hologram::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+    animation: hologram-scan 3s linear infinite;
+    pointer-events: none;
+  }
+  
+  /* Energy field effect */
+  .energy-field {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .energy-field::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: energy-rotate 10s linear infinite;
+  }
+  
+  /* Disable animations on reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .scan-line::before,
+    .scan-line-horizontal::before,
+    .pulse-beacon::before,
+    .data-stream,
+    .grid-pulse,
+    .terminal-cursor::after,
+    .hologram,
+    .hologram::before,
+    .energy-field::before {
+      animation: none;
+    }
+  }
+}
+
+/* Keyframe Animations for Stars */
+@keyframes stars-move-1 {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes stars-move-2 {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(30%, -30%);
+  }
+}
+
+@keyframes stars-twinkle-1 {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes stars-twinkle-2 {
+  0%, 100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Futuristic Animation Keyframes */
+@keyframes scan-vertical {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes scan-horizontal {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-1 {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-2 {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(2px, -2px);
+  }
+  40% {
+    transform: translate(2px, 2px);
+  }
+  60% {
+    transform: translate(-2px, -2px);
+  }
+  80% {
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes data-fall {
+  0% {
+    top: -20px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes grid-pulse-anim {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes cursor-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hologram-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes hologram-scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes energy-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animated dotted background pattern */
+@keyframes wave-dots {
+  0%, 100% {
+    background-position: 0% 0%, 50% 50%;
+  }
+  50% {
+    background-position: 100% 100%, 0% 0%;
+  }
+}
+
+.dotted-bg {
+  background-image: 
+    radial-gradient(circle, rgba(0, 0, 0, 0.15) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(0, 0, 0, 0.1) 1.5px, transparent 1.5px);
+  background-size: 30px 30px, 50px 50px;
+  background-position: 0 0, 15px 15px;
+  animation: wave-dots 60s ease-in-out infinite;
+}
+
+.dotted-bg-light {
+  background-image: 
+    radial-gradient(circle, rgba(0, 0, 0, 0.08) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(0, 0, 0, 0.05) 1.5px, transparent 1.5px);
+  background-size: 30px 30px, 50px 50px;
+  background-position: 0 0, 15px 15px;
+  animation: wave-dots 60s ease-in-out infinite;
+}
+
+.dotted-bg-hero {
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.4) 1.5px, transparent 1.5px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.2) 1.5px, transparent 1.5px);
+  background-size: 30px 30px, 50px 50px;
+  background-position: 0 0, 15px 15px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Body dark theme */
+body {
+  background: #000;
+  color: #fff;
+}
